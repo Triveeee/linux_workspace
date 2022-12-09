@@ -25,15 +25,6 @@ chiave_valore = Fernet(chiave)
 client = Client()
 client.connect(BROKER_HOST,PORTA_BROKER)
 
-#-----------------------------------------------
-#Conessione ad Atlas
-
-password = 'trive004'
-uri = 'mongodb+srv://riccardo:'+ password + '@cluster0.zzvi9yy.mongodb.net/test'
-atlas = MongoClient(uri)
-db = atlas.cluster0
-collection = db.case
-
 #----------------------------------------------
 #Funzioni
 
