@@ -35,8 +35,7 @@ def home():
 
 @app.route('/stanza/<param>')
 def room(param):
-    print(param)
-    nome = param + '.html'
+    nome = 'dati.html'
     dati= json.loads(dati_json)
     obj = dati['stanze'][param]
     obj = {**obj , "tempo": dati['tempo'] , 'data': dati['data']}

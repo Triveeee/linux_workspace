@@ -9,7 +9,7 @@ import json
 #------------------------------------------------
 #Dati
 chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
-topic = 'atlas/mongodb/case'
+topic = 'home/temperatura/1'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
 
