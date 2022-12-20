@@ -8,7 +8,9 @@ import json
 
 #------------------------------------------------
 #Dati
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
+f = open('key.txt' , 'r')
+chiave = f.read()
+f.close()
 topic = 'atlas/mongodb/case'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
