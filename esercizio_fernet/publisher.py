@@ -17,7 +17,6 @@ PORTA_BROKER = 1883
 
 #----------------------------------------------
 #definizione chiave
-
 chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
 chiave_valore = Fernet(chiave)
 
