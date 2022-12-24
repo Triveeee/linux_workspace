@@ -8,13 +8,12 @@ from json import *
 
 #------------------------------------------------
 #Dati
-topic = 'atlas/mongodb/case'
+topic = 'atlas/mongodb/casa'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
 
 #---------------------------------------------
 # definizione chiave
-
 f = open('key.txt' , 'r')
 chiave = f.read()
 f.close()
@@ -50,11 +49,12 @@ def findLastIndex():
 
 def on_message(client , userdata , msg):
     id_msg = findLastIndex()  # <--- richiama la funzione findlastindex
-    message_cryptated = msg.payload.decode("utf-8")  # <--- decodificazione del messaggio inviato dal broher (bytes criptato -> string criptato)
+    message_cryptated = msg.payload# <--- decodificazione del messaggio inviato dal broher (bytes criptato -> string criptato)
     message_bytes = chiave_valore.decrypt(message_cryptated) # <--- decriptazione del messaggio in bytes (string criptato-> bytes decriptato) 
     message_json = message_bytes.decode("utf-8") # <-- decodifica del messaggio decriptato in bytes  (bytes decriptato -> string decriptato)
     element = {"_id": id_msg, "payload": loads(message_json)} # <-- conversione in un dizionario in modo da agiungerlo nel database (mesaggio criptato)
     collection.insert_one(element)
+    print(message_json)
 
 #---------------------------------------------
 #CallBack

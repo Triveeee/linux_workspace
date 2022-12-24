@@ -11,13 +11,15 @@ import json
 f = open('key.txt' , 'r')
 chiave = f.read()
 f.close()
-topic = 'atlas/mongodb/case'
+topic = 'atlas/mongodb/casa'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
 
 #----------------------------------------------
 #definizione chiave
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
+f = open('key.txt' , 'r')
+chiave = f.read()
+f.close()
 chiave_valore = Fernet(chiave)
 
 #-----------------------------------------------
