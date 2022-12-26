@@ -39,8 +39,8 @@ collection = db.case
 #-----------------------------------------------
 # Funzioni_di_callback
 def on_message(client , userdata , msg):
-    message_cryptated = msg.payload# <--- decodificazione del messaggio inviato dal broher (bytes criptato -> string criptato)
-    message_bytes = chiave_valore.decrypt(message_cryptated) # <--- decriptazione del messaggio in bytes (string criptato-> bytes decriptato) 
+    message_cryptated = msg.payload# <-- arrivo del messaggio
+    message_bytes = chiave_valore.decrypt(message_cryptated) # <--- decriptazione del messaggio in bytes (bytes criptato-> bytes decriptato) 
     message_json = message_bytes.decode("utf-8") # <ms-- decodifica del messaggio decriptato in bytes  (bytes decriptato -> string decriptato)
     message = loads(message_json)   # conversione stringa json a dizionario
     n = message['casa']
