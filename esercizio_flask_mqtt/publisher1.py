@@ -9,12 +9,15 @@ import json
 #------------------------------------------------
 #Dati
 topic = 'home/misurazioni/'
+topic_mongo = 'atlas/mongodb/case'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
 
 #----------------------------------------------
 #definizione chiave
-1
+f = open('key.txt' , 'r')
+chiave = f.read()
+f.close()
 chiave_valore = Fernet(chiave)
 
 #-----------------------------------------------
@@ -58,8 +61,11 @@ client.loop_start()
 try:
     while True:
         for i in range(4):
-            client.publish(topic + str(i) , createHome(i))
-        sleep(5)
+            home = createHome(i)
+            client.publish(topic + str(i) , home)
+            client.publish(topic_mongo , home)
+            sleep(1)
+        sleep(3)
 
 except KeyboardInterrupt:
     print("Stop publisher")

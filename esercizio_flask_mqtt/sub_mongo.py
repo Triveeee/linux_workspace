@@ -14,8 +14,9 @@ PORTA_BROKER = 1883
 
 #---------------------------------------------
 # definizione chiave
-
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
+f = open('key.txt' , 'r')
+chiave = f.read()
+f.close()
 chiave_valore = Fernet(chiave)
 
 #-----------------------------------------------
