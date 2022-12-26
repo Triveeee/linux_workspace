@@ -8,15 +8,13 @@ import json
 
 #------------------------------------------------
 #Dati
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
-topic = 'home/temperatura/1'
+topic = 'home/misurazioni/'
 BROKER_HOST = '80.210.122.173'
 PORTA_BROKER = 1883
 
 #----------------------------------------------
 #definizione chiave
-
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
+1
 chiave_valore = Fernet(chiave)
 
 #-----------------------------------------------
@@ -59,12 +57,12 @@ def createHome(n_casa):
 client.loop_start()
 try:
     while True:
-        casa = createHome(1) # < -- casa criptata
-        print(casa)
-        client.publish(topic, casa)  # < --- invia il messaggio criptato al broker in bytes
+        for i in range(4):
+            client.publish(topic + str(i) , createHome(i))
         sleep(5)
 
 except KeyboardInterrupt:
     print("Stop publisher")
+
 client.loop_stop()
 client.disconnect()
