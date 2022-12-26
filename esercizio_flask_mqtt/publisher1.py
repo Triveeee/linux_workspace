@@ -31,7 +31,8 @@ client.connect(BROKER_HOST,PORTA_BROKER)
 
 def cryptation(message):
     message_byte = message.encode('utf-8')  # <-- trasformazione messaggio in formato utf-8 (in bytes)
-    message_cryptated = chiave_valore.encrypt(message_byte) # <--criptazione del messaggio in bytes (viene trasformato in stringa)
+    message_cryptated_byte = chiave_valore.encrypt(message_byte) # <--criptazione del messaggio in bytes (viene trasformato in stringa)
+    message_cryptated = message_cryptated_byte.decode('utf-8')
     return message_cryptated
 
 def createHome(n_casa):
@@ -64,6 +65,9 @@ try:
             home = createHome(i)
             client.publish(topic + str(i) , home)
             client.publish(topic_mongo , home)
+            print(topic)
+            print(type(home))
+            print(home)
             sleep(1)
         sleep(3)
 

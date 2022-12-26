@@ -49,7 +49,7 @@ def room(param):
     nome = 'dati.html'
     obj = dati['stanze'][param]
     obj = {**obj , "tempo": dati['tempo'] , 'data': dati['data']}
-
+    print(dati)
     return render_template(nome , dati=obj , REFRESH=refresh)
 
 @mqtt.on_connect()
@@ -63,6 +63,7 @@ def gestione_messaggio(client , userdata , msg):
     dati_json_bytes = chiave_valore.decrypt(dati_criptati) # <--- decriptazione del messaggio in bytes (string criptato-> bytes decriptato)
     dati_json = dati_json_bytes.decode('utf-8')
     dati = json.loads(dati_json)
+    print(dati)
     return(dati_json)
 
 
