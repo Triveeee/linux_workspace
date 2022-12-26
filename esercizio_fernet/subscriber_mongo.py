@@ -54,7 +54,6 @@ def on_message(client , userdata , msg):
     message_json = message_bytes.decode("utf-8") # <-- decodifica del messaggio decriptato in bytes  (bytes decriptato -> string decriptato)
     element = {"_id": id_msg, "payload": loads(message_json)} # <-- conversione in un dizionario in modo da agiungerlo nel database (mesaggio criptato)
     collection.insert_one(element)
-    print(message_json)
 
 #---------------------------------------------
 #CallBack

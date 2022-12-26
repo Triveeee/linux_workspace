@@ -25,7 +25,17 @@ list = f.read().split(' = ')
 #parametri
 topic = 'home/temperatura/' + list[1]   
 refresh = 5
-#
+dati = {
+    "casa": 0,
+    "data": "",
+    "tempo": "",
+    "stanze": {
+        "cucina": {"temperatura": 0, "umidita": 0},
+        "soggiorno": {"temperatura": 0, "umidita": 0 },
+        "mansarda": {"temperatura": 0 , "umidita": 0 },
+        "camera_da_letto": {"temperatura": 0 , "umidita": 0}
+    }
+} 
 
 
 @app.route('/home')
@@ -35,7 +45,6 @@ def home():
 @app.route('/stanza/<param>')
 def room(param):
     nome = 'dati.html'
-    dati = json.loads(dati_json)
     obj = dati['stanze'][param]
     obj = {**obj , "tempo": dati['tempo'] , 'data': dati['data']}
 
@@ -47,10 +56,11 @@ def gestione_conessione(client , userdata , flasgs , rc):
 
 @mqtt.on_message()
 def gestione_messaggio(client , userdata , msg):
-    global dati_json
+    global dati
     dati_criptati = msg.payload
     dati_json_bytes = chiave_valore.decrypt(dati_criptati) # <--- decriptazione del messaggio in bytes (string criptato-> bytes decriptato)
     dati_json = dati_json_bytes.decode('utf-8')
+    dati = json.loads(dati_json)
     return(dati_json)
 
 
