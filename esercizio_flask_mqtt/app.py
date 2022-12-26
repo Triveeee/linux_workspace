@@ -13,7 +13,9 @@ app.config['MQTT_BROKER_PORT'] = 1883
 mqtt = Mqtt(app)
 
 # chiave Fernet
-chiave = 'fM5t5hPaMlRWtmfpnbaaDAsYJvsDnDE5Ehd_9oYirEg='
+f = open('key.txt' , 'r')
+chiave = f.read()
+f.close()
 chiave_valore = Fernet(chiave)
 #
 
@@ -23,7 +25,7 @@ list = f.read().split(' = ')
 #
 
 #parametri
-topic = 'home/temperatura/' + list[1]   
+topic = 'home/misurazioni/' + list[1]   
 refresh = 5
 dati = {
     "casa": 0,
